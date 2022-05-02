@@ -1,8 +1,10 @@
 import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
+
 
 // Firebase configuration
 const firebaseConfig = {
-	apiKey: process.env.VITE_FIREBASE,
+	apiKey: import.meta.env.VITE_FIREBASE,
 	authDomain: 'gratitude-journal-fcdd0.firebaseapp.com',
 	projectId: 'gratitude-journal-fcdd0',
 	storageBucket: 'gratitude-journal-fcdd0.appspot.com',
@@ -12,5 +14,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
+const database = getDatabase(firebase); 
 
-export default firebase;
+export default database; 
