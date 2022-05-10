@@ -25,7 +25,7 @@ const handleSubmit = (event) => {
         minute: 'numeric',
     };
 
-    const timestamp = new Intl.DateTimeFormat('en-CA', dateFormat).format(postID); 
+    const timestamp = new Intl.DateTimeFormat('en-CA', dateFormat).format(Date.now()); 
 
     // Push user entry to Firebase
     set(ref(database, postID), {

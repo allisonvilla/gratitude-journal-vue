@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
-
 // Firebase configuration
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FIREBASE,
@@ -14,6 +13,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
+
 const database = getDatabase(firebase); 
 
 export default database; 

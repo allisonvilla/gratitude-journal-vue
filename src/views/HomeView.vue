@@ -3,7 +3,7 @@ import Submit from '../components/Submit.vue';
 </script>
 
 <template>
-  <main>
-      <Submit />
-  </main>
+    <main>
+        <Submit />
+    </main>
 </template>
