@@ -17,22 +17,17 @@ onValue(dbRef, (response) => {
 
     for (let key in data) {
         entries.push({
-            key: key,
+            id: key,
             entry: data[key].entry,
             time: data[key].time,
             likes: data[key].likes,
         });
     }
 });
-
 </script>
 
 <template>
-    <li v-for="item in entries">
-        {{item.key}}
-        {{item.entry}}
-        {{item.time}}
-    </li>
+    <Entry v-for="item in entries" v-bind="item" />
 </template>
 
 <style>
