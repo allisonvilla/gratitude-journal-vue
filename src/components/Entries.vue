@@ -10,8 +10,11 @@ const entries = reactive([]);
 // Make reference to our database 
 const dbRef = ref(database);
 
-// When an entry is added by a user, update the entries variable 
+// When an entry is added by a user or a likes count is updated, update the entries variable 
 onValue(dbRef, (response) => {
+    // Clear entries array to avoid duplicate renders on like
+    entries.splice(0, entries.length);
+
     // Store the response in a variable
     const data = response.val();
 

@@ -1,7 +1,6 @@
 <script setup>
 import database from '../firebaseConfig';
 import { ref, set } from 'firebase/database';
-import { reactive } from 'vue';
 
 const props = defineProps(['id', 'entry', 'time', 'likes']); 
 
