@@ -1,22 +1,23 @@
 <script setup>
 import database from '../firebaseConfig';
 import { ref, set } from 'firebase/database';
+import { reactive } from 'vue';
 
-defineProps(['id', 'entry', 'time', 'likes']); 
+const props = defineProps(['id', 'entry', 'time', 'likes']); 
 
 // Function that increases likes count on button click 
 const handleLike = () => {
-    console.log(id);
-    // Update likes count in database 
-    // set(ref(database, id), {
-    //     likes: likes++, 
-    // }); 
+    set(ref(database, props.id), {
+        entry: props.entry,
+        time: props.time,
+        likes: props.likes + 1,
+    }); 
 }
 </script>
 
 <template>
-<div class="user-entry" key="id">
-    <p class="entry-text">{{id}}</p>
+<div class="user-entry" key="props.id">
+    <p class="entry-text">{{entry}}</p>
     <p class="timestamp">{{time}}</p>
     <p class="likes">
         <button class="likes-button" @click="handleLike">💖</button> 
