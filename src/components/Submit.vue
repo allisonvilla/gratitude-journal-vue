@@ -1,5 +1,5 @@
 <script setup>
-import database from '../firebaseConfig';
+import database from '@/firebaseConfig';
 import { ref, set } from 'firebase/database';
 import { reactive } from 'vue';
 import { RouterLink } from 'vue-router';
@@ -38,15 +38,13 @@ const handleSubmit = (event) => {
 	});
 
 	userInput.submitted = true;
-
-	// Reset user input
 	userInput.entry = '';
 };
 </script>
 
 <template>
 	<div class="submit-form">
-		<form action="">
+		<form @submit="handleSubmit">
 			<label htmlFor="submission">What are you grateful for today?</label>
 			<input
 				type="textarea"
@@ -54,15 +52,18 @@ const handleSubmit = (event) => {
 				id="submission"
 				placeholder="Today, I'm grateful for..."
 				v-model="userInput.entry"
+				required
 			/>
-			<button @click="handleSubmit">Submit</button>
+			<button>Submit</button>
 		</form>
 
-		<p v-if="userInput.submitted">Thanks for submitting an entry!</p>
-		<p v-if="userInput.submitted">
-			See what others are grateful for
-			<RouterLink to="/entries">here</RouterLink>.
-		</p>
+		<div v-if="userInput.submitted" class="thank-you">
+			<p>Thanks for submitting an entry!</p>
+			<p>
+				See what others are grateful for
+				<RouterLink to="/entries">here</RouterLink>.
+			</p>
+		</div>
 	</div>
 </template>
 

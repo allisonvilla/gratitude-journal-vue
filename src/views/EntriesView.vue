@@ -1,11 +1,23 @@
 <script setup>
 import { ref, onValue } from 'firebase/database';
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import database from '@/firebaseConfig.js';
 import Entry from '@/components/Entry.vue';
 
 // Reactive variable that will hold the entries returned from Firebase
 const entries = reactive([]);
+
+// Reactive variable that will hold user's query
+const search = reactive({
+	query: '',
+});
+
+const matchingEntries = computed(() => {
+	let filter = search.query;
+	return;
+});
+
+console.log(matchingEntries.value);
 
 // Make reference to our database
 const dbRef = ref(database);
@@ -32,6 +44,18 @@ onValue(dbRef, (response) => {
 <template>
 	<section class="entries">
 		<h1>More reasons to be grateful</h1>
-		<Entry v-for="item in entries" v-bind="item" />
+		<form>
+			<label htmlFor="search">Search: </label>
+			<input
+				type="textarea"
+				name="search"
+				id="search"
+				v-model="search.query"
+				placeholder="Looking for something?"
+			/>
+		</form>
+		<div class="entries">
+			<Entry v-for="item in entries" v-bind="item" />
+		</div>
 	</section>
 </template>
