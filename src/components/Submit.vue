@@ -2,9 +2,9 @@
 import database from '../firebaseConfig';
 import { ref, set } from 'firebase/database';
 import { reactive } from 'vue';
+import { RouterLink } from 'vue-router';
 
-// Reactive variable for user's input
-const userInput = reactive({ entry: '' });
+const userInput = reactive({ entry: '', submitted: false });
 
 // Event handler for submitting entry to database
 const handleSubmit = (event) => {
@@ -37,6 +37,8 @@ const handleSubmit = (event) => {
 		likes: 0,
 	});
 
+	userInput.submitted = true;
+
 	// Reset user input
 	userInput.entry = '';
 };
@@ -55,6 +57,12 @@ const handleSubmit = (event) => {
 			/>
 			<button @click="handleSubmit">Submit</button>
 		</form>
+
+		<p v-if="userInput.submitted">Thanks for submitting an entry!</p>
+		<p v-if="userInput.submitted">
+			See what others are grateful for
+			<RouterLink to="/entries">here</RouterLink>.
+		</p>
 	</div>
 </template>
 

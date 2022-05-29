@@ -1,20 +1,18 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-    <div class="wrapper">
+	<div class="wrapper">
+		<nav>
+			<RouterLink to="/">Home</RouterLink>
+			<RouterLink to="/entries">Entries</RouterLink>
+		</nav>
+	</div>
 
-        <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/entries">Entries</RouterLink>
-        </nav>
-    </div>
-
-
-    <RouterView />
+	<RouterView />
 </template>
 
 <style>
-@import "@/assets/base.css";
+@import '@/assets/base.css';
 </style>
