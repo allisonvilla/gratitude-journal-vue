@@ -13,11 +13,6 @@ const search = reactive({
 	query: null,
 });
 
-const sortStatus = reactive({
-	newestFirst: true,
-	mostLiked: false,
-});
-
 const matchingEntries = computed(() => {
 	return entries.filter((item) => {
 		if (item.entry.includes(search.query)) {
@@ -26,26 +21,9 @@ const matchingEntries = computed(() => {
 	});
 });
 
-// Make reference to our database
-const dbRef = ref(database);
-
-// When an entry is added by a user or a likes count is updated, update the entries variable
-onValue(dbRef, (response) => {
-	// Clear entries array to avoid duplicate renders on like
-	entries.splice(0);
-
-	// Store the response in a variable
-	const data = response.val();
-
-	for (let key in data) {
-		entries.push({
-			id: key,
-			entry: data[key].entry,
-			time: data[key].time,
-			likes: data[key].likes,
-		});
-	}
-	entries.reverse();
+const sortStatus = reactive({
+	newestFirst: true,
+	mostLiked: false,
 });
 
 // Sort entries by chronological order
@@ -70,14 +48,36 @@ const changeSortOrder = () => {
 // If user selects sorting by "most liked", return entries in order of most liked, else sort only by chronological order
 const sortLiked = () => {
 	sortStatus.mostLiked = !sortStatus.mostLiked;
-	if (!sortStatus.mostLiked) {
-		sortEntries();
-	} else {
+	if (sortStatus.mostLiked) {
 		entries.sort((a, b) => {
 			return b.likes - a.likes;
 		});
+	} else {
+		sortEntries();
 	}
 };
+
+// Make reference to our database
+const dbRef = ref(database);
+
+// When an entry is added by a user or a likes count is updated, update the entries array
+onValue(dbRef, (response) => {
+	// Clear entries array to avoid duplicate renders on like
+	entries.splice(0);
+
+	// Store the response in a variable
+	const data = response.val();
+
+	for (let key in data) {
+		entries.push({
+			id: key,
+			entry: data[key].entry,
+			time: data[key].time,
+			likes: data[key].likes,
+		});
+	}
+	sortEntries();
+});
 </script>
 
 <template>
