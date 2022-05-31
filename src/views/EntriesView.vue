@@ -48,8 +48,8 @@ onValue(dbRef, (response) => {
 	entries.reverse();
 });
 
+// Sort entries by chronological order
 const sortEntries = () => {
-	sortStatus.newestFirst = !sortStatus.newestFirst;
 	if (sortStatus.newestFirst) {
 		entries.sort((a, b) => {
 			return b.id - a.id;
@@ -61,18 +61,17 @@ const sortEntries = () => {
 	}
 };
 
+// Change chronological sort order preference then sort
+const changeSortOrder = () => {
+	sortStatus.newestFirst = !sortStatus.newestFirst;
+	sortEntries();
+};
+
+// If user selects sorting by "most liked", return entries in order of most liked, else sort only by chronological order
 const sortLiked = () => {
 	sortStatus.mostLiked = !sortStatus.mostLiked;
 	if (!sortStatus.mostLiked) {
-		if (sortStatus.newestFirst) {
-			entries.sort((a, b) => {
-				return b.id - a.id;
-			});
-		} else {
-			entries.sort((a, b) => {
-				return a.id - b.id;
-			});
-		}
+		sortEntries();
 	} else {
 		entries.sort((a, b) => {
 			return b.likes - a.likes;
@@ -95,7 +94,7 @@ const sortLiked = () => {
 			/>
 		</form>
 		<div class="sort-buttons">
-			<button @click="sortEntries">
+			<button @click="changeSortOrder">
 				{{
 					sortStatus.newestFirst ? 'Sort by oldest' : 'Sort by newest'
 				}}
