@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onValue } from 'firebase/database';
 import { reactive, computed } from 'vue';
+import { RouterLink } from 'vue-router';
 import database from '@/firebaseConfig.js';
 import Entry from '@/components/Entry.vue';
 
@@ -9,15 +10,16 @@ const entries = reactive([]);
 
 // Reactive variable that will hold user's query
 const search = reactive({
-	query: '',
+	query: null,
 });
 
 const matchingEntries = computed(() => {
-	let filter = search.query;
-	return;
+	return entries.filter((item) => {
+		if (item.entry.includes(search.query)) {
+			return item;
+		}
+	});
 });
-
-console.log(matchingEntries.value);
 
 // Make reference to our database
 const dbRef = ref(database);
@@ -55,7 +57,19 @@ onValue(dbRef, (response) => {
 			/>
 		</form>
 		<div class="entries">
-			<Entry v-for="item in entries" v-bind="item" />
+			<Entry
+				v-if="search.query"
+				v-for="item in matchingEntries"
+				v-bind="item"
+			/>
+			<Entry v-else v-for="item in entries" v-bind="item" />
+			<p
+				v-if="search.query && !matchingEntries.length"
+				class="search-fail"
+			>
+				Sorry, we couldn't find anything matching your search. Why don't
+				you <RouterLink to="/">submit your own</RouterLink>?
+			</p>
 		</div>
 	</section>
 </template>
