@@ -13,6 +13,11 @@ const search = reactive({
 	query: null,
 });
 
+const sortStatus = reactive({
+	newestFirst: true,
+	mostLiked: false,
+});
+
 const matchingEntries = computed(() => {
 	return entries.filter((item) => {
 		if (item.entry.includes(search.query)) {
@@ -40,7 +45,40 @@ onValue(dbRef, (response) => {
 			likes: data[key].likes,
 		});
 	}
+	entries.reverse();
 });
+
+const sortEntries = () => {
+	sortStatus.newestFirst = !sortStatus.newestFirst;
+	if (sortStatus.newestFirst) {
+		entries.sort((a, b) => {
+			return b.id - a.id;
+		});
+	} else {
+		entries.sort((a, b) => {
+			return a.id - b.id;
+		});
+	}
+};
+
+const sortLiked = () => {
+	sortStatus.mostLiked = !sortStatus.mostLiked;
+	if (!sortStatus.mostLiked) {
+		if (sortStatus.newestFirst) {
+			entries.sort((a, b) => {
+				return b.id - a.id;
+			});
+		} else {
+			entries.sort((a, b) => {
+				return a.id - b.id;
+			});
+		}
+	} else {
+		entries.sort((a, b) => {
+			return b.likes - a.likes;
+		});
+	}
+};
 </script>
 
 <template>
@@ -56,6 +94,14 @@ onValue(dbRef, (response) => {
 				placeholder="Looking for something?"
 			/>
 		</form>
+		<div class="sort-buttons">
+			<button @click="sortEntries">
+				{{
+					sortStatus.newestFirst ? 'Sort by oldest' : 'Sort by newest'
+				}}
+			</button>
+			<button @click="sortLiked">Sort by most liked</button>
+		</div>
 		<div class="entries">
 			<Entry
 				v-if="search.query"
