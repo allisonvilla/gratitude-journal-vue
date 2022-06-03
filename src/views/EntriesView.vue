@@ -57,7 +57,7 @@ const sortLiked = () => {
 	}
 };
 
-// Make reference to our database
+// Make reference to database
 const dbRef = ref(database);
 
 // When an entry is added by a user or a likes count is updated, update the entries array
