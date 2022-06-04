@@ -66,5 +66,3 @@ const handleSubmit = (event) => {
 		</div>
 	</div>
 </template>
-
-<style></style>

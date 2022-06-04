@@ -1,14 +1,12 @@
 <script setup>
 import database from '@/firebaseConfig';
-import { ref, set } from 'firebase/database';
+import { ref, update } from 'firebase/database';
 
 const props = defineProps(['id', 'entry', 'time', 'likes']);
 
 // Function that increases likes count on button click
 const handleLike = () => {
-	set(ref(database, props.id), {
-		entry: props.entry,
-		time: props.time,
+	update(ref(database, props.id), {
 		likes: props.likes + 1,
 	});
 };
@@ -24,5 +22,3 @@ const handleLike = () => {
 		</p>
 	</div>
 </template>
-
-<style></style>
