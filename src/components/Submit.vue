@@ -44,8 +44,10 @@ const handleSubmit = (event) => {
 
 <template>
 	<div class="submit-form">
-		<form @submit="handleSubmit">
-			<label htmlFor="submission">What are you grateful for today?</label>
+		<form @submit="handleSubmit" class="flex flex-col items-center">
+			<label htmlFor="submission" class="mb-5"
+				>What are you grateful for today?</label
+			>
 			<input
 				type="textarea"
 				name="submission"

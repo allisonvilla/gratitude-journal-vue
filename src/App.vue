@@ -3,9 +3,9 @@ import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-	<div class="app flex flex-col items-center">
-		<h1 class="text-3xl my-8">Gratitude Journal</h1>
-		<nav class="flex content-center justify-around bg-emerald-50">
+	<div class="flex flex-col items-center">
+		<h1 class="text-4xl my-10">Gratitude Journal</h1>
+		<nav class="flex content-center justify-around mb-10">
 			<RouterLink to="/">Home</RouterLink>
 			<RouterLink to="/entries">Entries</RouterLink>
 		</nav>

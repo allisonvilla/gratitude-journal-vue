@@ -81,8 +81,8 @@ onValue(dbRef, (response) => {
 </script>
 
 <template>
-	<section class="entries">
-		<h1>More reasons to be grateful</h1>
+	<section class="flex flex-col items-center">
+		<h2 class="text-2xl mb-5">More reasons to be grateful</h2>
 		<form>
 			<label htmlFor="search">Search: </label>
 			<input
@@ -93,13 +93,15 @@ onValue(dbRef, (response) => {
 				placeholder="Looking for something?"
 			/>
 		</form>
-		<div class="sort-buttons">
-			<button @click="changeSortOrder">
+		<div class="sort-buttons mb-8">
+			<button @click="changeSortOrder" class="sort-btn">
 				{{
 					sortStatus.newestFirst ? 'Sort by oldest' : 'Sort by newest'
 				}}
 			</button>
-			<button @click="sortLiked">Sort by most liked</button>
+			<button @click="sortLiked" class="sort-btn">
+				Sort by most liked
+			</button>
 		</div>
 		<div class="entries">
 			<Entry

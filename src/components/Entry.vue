@@ -17,7 +17,7 @@ const handleLike = () => {
 		<p class="entry-text">{{ entry }}</p>
 		<p class="timestamp">{{ time }}</p>
 		<p class="likes">
-			<button class="likes-button" @click="handleLike">💖</button>
+			<button class="like-btn" @click="handleLike">💖</button>
 			<span class="likes-count">{{ likes }} likes</span>
 		</p>
 	</div>
