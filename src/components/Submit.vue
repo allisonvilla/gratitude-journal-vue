@@ -59,11 +59,15 @@ const handleSubmit = (event) => {
 			<button>Submit</button>
 		</form>
 
-		<div v-if="userInput.submitted" class="thank-you">
+		<div v-if="userInput.submitted" class="m-5">
 			<p>Thanks for submitting an entry!</p>
 			<p>
 				See what others are grateful for
-				<RouterLink to="/entries">here</RouterLink>.
+				<RouterLink
+					to="/entries"
+					class="p-0 m-0 border-0 bg-transparent hover:bg-transparent hover:underline hover:underline-offset-4 text-emerald-400"
+					>here</RouterLink
+				>.
 			</p>
 		</div>
 	</div>

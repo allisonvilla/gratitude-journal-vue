@@ -78,13 +78,20 @@ onValue(dbRef, (response) => {
 	}
 	sortEntries();
 });
+
+const scrollToTop = () => {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth',
+	});
+};
 </script>
 
 <template>
-	<section class="flex flex-col items-center">
-		<h2 class="text-2xl mb-5">More reasons to be grateful</h2>
+	<section class="flex flex-col items-center mt-5">
+		<h2 class="text-3xl mb-5 font-heading">More reasons to be grateful</h2>
 		<form>
-			<label htmlFor="search">Search: </label>
+			<label htmlFor="search" class="mr-3">Search: </label>
 			<input
 				type="textarea"
 				name="search"
@@ -100,10 +107,12 @@ onValue(dbRef, (response) => {
 				}}
 			</button>
 			<button @click="sortLiked" class="sort-btn">
-				Sort by most liked
+				{{
+					sortStatus.mostLiked ? 'Sort by date' : 'Sort by most liked'
+				}}
 			</button>
 		</div>
-		<div class="entries">
+		<div class="w-full flex flex-col max-w-2xl">
 			<Entry
 				v-if="search.query"
 				v-for="item in matchingEntries"
@@ -118,5 +127,9 @@ onValue(dbRef, (response) => {
 				you <RouterLink to="/">submit your own</RouterLink>?
 			</p>
 		</div>
+
+		<RouterLink class="sort-btn mb-6" to @click="scrollToTop">
+			Scroll to top
+		</RouterLink>
 	</section>
 </template>

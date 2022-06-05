@@ -13,11 +13,19 @@ const handleLike = () => {
 </script>
 
 <template>
-	<div class="user-entry" key="props.id">
-		<p class="entry-text">{{ entry }}</p>
-		<p class="timestamp">{{ time }}</p>
-		<p class="likes">
-			<button class="like-btn" @click="handleLike">💖</button>
+	<div
+		class="rounded-lg bg-emerald-50 p-5 mb-7 mx-4 flex flex-col items-center w-96"
+		key="props.id"
+	>
+		<p class="mb-4">{{ entry }}</p>
+		<p class="text-sm text-slate-800 mb-3">{{ time }}</p>
+		<p class="text-sm text-slate-800">
+			<button
+				class="bg-white hover:bg-transparent p-2 rounded-full mx-3"
+				@click="handleLike"
+			>
+				💖
+			</button>
 			<span class="likes-count">{{ likes }} likes</span>
 		</p>
 	</div>
