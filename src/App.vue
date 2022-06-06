@@ -21,7 +21,7 @@ import { RouterLink, RouterView } from 'vue-router';
 		<footer class="text-center py-5 mt-7">
 			Made with ❤️ by
 			<a
-				href="https://github.com/allisonvilla"
+				href="https://github.com/allisonvilla/gratitude-journal-vue"
 				target="blank"
 				rel="noreferrer noopener"
 				class="sort-btn mx-0 hover:underline-offset-4"
