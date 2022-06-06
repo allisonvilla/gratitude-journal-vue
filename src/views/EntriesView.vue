@@ -89,15 +89,18 @@ const scrollToTop = () => {
 
 <template>
 	<section class="flex flex-col items-center mt-5">
-		<h2 class="text-3xl mb-5 font-heading">More reasons to be grateful</h2>
+		<h2 class="text-3xl mb-5 font-heading smol:text-2xl">
+			More reasons to be grateful
+		</h2>
 		<form>
-			<label htmlFor="search" class="mr-3">Search: </label>
+			<label htmlFor="search" class="mr-3 smol:mr-2">Search: </label>
 			<input
 				type="textarea"
 				name="search"
 				id="search"
 				v-model="search.query"
 				placeholder="Looking for something?"
+				class="smol:py-2 px-4"
 			/>
 		</form>
 		<div class="sort-buttons mb-8">
@@ -112,19 +115,19 @@ const scrollToTop = () => {
 				}}
 			</button>
 		</div>
-		<div class="w-full flex flex-col max-w-2xl">
+		<div class="w-full flex flex-col items-center max-w-2xl">
 			<Entry
 				v-if="search.query"
 				v-for="item in matchingEntries"
 				v-bind="item"
 			/>
 			<Entry v-else v-for="item in entries" v-bind="item" />
-			<p
-				v-if="search.query && !matchingEntries.length"
-				class="search-fail"
-			>
+			<p v-if="search.query && !matchingEntries.length" class="mb-7">
 				Sorry, we couldn't find anything matching your search. Why don't
-				you <RouterLink to="/">submit your own</RouterLink>?
+				you
+				<RouterLink to="/" class="sort-btn m-0 hover:underline-offset-4"
+					>submit your own</RouterLink
+				>?
 			</p>
 		</div>
 

@@ -14,7 +14,7 @@ const handleLike = () => {
 
 <template>
 	<div
-		class="rounded-lg bg-emerald-50 p-5 mb-7 mx-4 flex flex-col items-center w-96"
+		class="rounded-lg bg-emerald-50 p-5 mb-7 mx-4 flex flex-col items-center w-96 smol:p-4 smol:w-64"
 		key="props.id"
 	>
 		<p class="mb-4">{{ entry }}</p>
