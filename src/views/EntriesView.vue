@@ -106,7 +106,11 @@ const scrollToTop = () => {
 		</div>
 
 		<div class="sort-buttons mb-8">
-			<button @click="changeSortOrder" class="sort-btn">
+			<button
+				@click="changeSortOrder"
+				class="sort-btn"
+				v-if="!sortStatus.mostLiked"
+			>
 				{{
 					sortStatus.newestFirst ? 'Sort by oldest' : 'Sort by newest'
 				}}
