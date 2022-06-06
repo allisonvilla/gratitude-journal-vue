@@ -14,8 +14,9 @@ const search = reactive({
 });
 
 const matchingEntries = computed(() => {
+	const regex = new RegExp(`${search.query}`, 'gi');
 	return entries.filter((item) => {
-		if (item.entry.includes(search.query)) {
+		if (item.entry.match(regex)) {
 			return item;
 		}
 	});
