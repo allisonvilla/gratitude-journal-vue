@@ -77,7 +77,14 @@ onValue(dbRef, (response) => {
 			likes: data[key].likes,
 		});
 	}
-	sortEntries();
+
+	if (sortStatus.mostLiked === true) {
+		entries.sort((a, b) => {
+			return b.likes - a.likes;
+		});
+	} else {
+		sortEntries();
+	}
 });
 
 const scrollToTop = () => {
