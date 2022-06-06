@@ -59,7 +59,7 @@ const handleSubmit = (event) => {
 			<button>Submit</button>
 		</form>
 
-		<div v-if="userInput.submitted" class="m-5">
+		<div v-if="userInput.submitted" class="m-5 text-center">
 			<p>Thanks for submitting an entry!</p>
 			<p>
 				See what others are grateful for
