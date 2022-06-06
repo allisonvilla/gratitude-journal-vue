@@ -92,7 +92,8 @@ const scrollToTop = () => {
 		<h2 class="text-3xl mb-5 font-heading smol:text-2xl">
 			More reasons to be grateful
 		</h2>
-		<form>
+
+		<div>
 			<label htmlFor="search" class="mr-3 smol:mr-2">Search: </label>
 			<input
 				type="textarea"
@@ -102,7 +103,8 @@ const scrollToTop = () => {
 				placeholder="Looking for something?"
 				class="smol:py-2 px-4"
 			/>
-		</form>
+		</div>
+
 		<div class="sort-buttons mb-8">
 			<button @click="changeSortOrder" class="sort-btn">
 				{{
