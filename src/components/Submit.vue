@@ -54,6 +54,8 @@ const handleSubmit = (event) => {
 				id="submission"
 				placeholder="Today, I'm grateful for..."
 				v-model="userInput.entry"
+				minlength="2"
+				maxlength="100"
 				required
 			/>
 			<button>Submit</button>
