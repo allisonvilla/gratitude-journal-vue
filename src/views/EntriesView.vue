@@ -14,9 +14,11 @@ const search = reactive({
 });
 
 const matchingEntries = computed(() => {
-	const regex = new RegExp(`${search.query}`, 'gi');
 	return entries.filter((item) => {
-		if (item.entry.match(regex)) {
+		if (
+			item.entry.toLowerCase().includes(search.query) ||
+			item.entry.includes(search.query)
+		) {
 			return item;
 		}
 	});
