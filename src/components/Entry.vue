@@ -17,7 +17,7 @@ const handleLike = () => {
 		class="rounded-lg bg-emerald-50 p-5 mb-7 mx-4 flex flex-col items-center w-96 smol:p-4 smol:w-64"
 		key="props.id"
 	>
-		<p class="mb-4">{{ entry }}</p>
+		<p class="mb-4 text-center">{{ entry }}</p>
 		<p class="text-sm text-slate-800 mb-3">{{ time }}</p>
 		<p class="text-sm text-slate-800">
 			<button
